@@ -6,6 +6,35 @@ pub struct Vec3 {
     pub e: (f64,f64,f64),
 }
 
+pub struct Ray {
+    orig: Point3,
+    dir: Vec3,
+}
+
+impl Ray {
+    pub fn new() -> Self {
+        let vec = Vec3::Vec3(0.0,0.0,0.0);
+        let point = Point3::Vec3(0.0,0.0,0.0);
+        Ray { orig: point, dir: vec }
+    }
+
+    pub fn Ray(origin: &Point3, direction: &Vec3) -> Self {
+        Ray { orig: *origin, dir: *direction }
+    }
+
+    pub fn origin(&self) -> Point3 {
+        return self.orig;
+    }
+
+    pub fn direction(&self) -> Vec3 {
+        return self.dir;
+    }
+
+    pub fn at(&self,t: f64) -> Point3 {
+        return self.orig + t*self.dir;
+    }
+}
+
 // type alias for code clarity
 pub type Point3 = Vec3;
 pub type Colour = Vec3;
